@@ -1,24 +1,26 @@
 import { useState } from 'react';
 import { Users, CheckCircle2, Clock, AlertTriangle, Activity } from 'lucide-react';
 import { TokenListModal } from '../../components/modals/TokenListModal';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const AdminDashboard = () => {
+  const { t } = useLanguage();
   const [selectedTokenDept, setSelectedTokenDept] = useState<string | null>(null);
 
   const [servicePerformance] = useState([
     { name: 'OPD', avgTime: '32 min avg', count: '82/85', progress: 96.4 },
     { name: 'Cardiology', avgTime: '41 min avg', count: '36/40', progress: 90.0 },
     { name: 'Laboratory', avgTime: '18 min avg', count: '58/80', progress: 72.5 },
-    { name: 'Pharmacy', avgTime: '8 min avg', count: '130/150', progress: 86.6 },
+    { name: 'Pharmacy', avgTime: '130/150', progress: 86.6, avgLabel: '8 min avg' },
     { name: 'Dental', avgTime: '22 min avg', count: '22/30', progress: 73.3 },
   ]);
 
   const [liveQueueStatus, setLiveQueueStatus] = useState([
-    { id: 1, name: 'OPD', serving: 'Serving #32 · 3 counters', waiting: '18 waiting', status: 'active' },
-    { id: 2, name: 'Cardiology', serving: 'Serving #14 · 2 counters', waiting: '8 waiting', status: 'active' },
-    { id: 3, name: 'Laboratory', serving: 'Serving #21 · 4 counters', waiting: '12 waiting', status: 'active' },
-    { id: 4, name: 'Pharmacy', serving: 'Serving #45 · 5 counters', waiting: '24 waiting', status: 'active' },
-    { id: 5, name: 'Dental', serving: 'Serving #9 · 2 counters', waiting: '5 waiting', status: 'paused' },
+    { id: 1, name: 'OPD', serving: `${t('serving')} #32 · 3 ${t('counters')}`, waiting: `18 ${t('waiting')}`, status: 'active' },
+    { id: 2, name: 'Cardiology', serving: `${t('serving')} #14 · 2 ${t('counters')}`, waiting: `8 ${t('waiting')}`, status: 'active' },
+    { id: 3, name: 'Laboratory', serving: `${t('serving')} #21 · 4 ${t('counters')}`, waiting: `12 ${t('waiting')}`, status: 'active' },
+    { id: 4, name: 'Pharmacy', serving: `${t('serving')} #45 · 5 ${t('counters')}`, waiting: `24 ${t('waiting')}`, status: 'active' },
+    { id: 5, name: 'Dental', serving: `${t('serving')} #9 · 2 ${t('counters')}`, waiting: `5 ${t('waiting')}`, status: 'paused' },
   ]);
 
   const toggleQueueStatus = (id: number) => {
@@ -46,7 +48,7 @@ export const AdminDashboard = () => {
               <Users size={22} />
             </div>
             <div className="metric-val">1,247</div>
-            <div className="metric-label">Total Visitors Today</div>
+            <div className="metric-label">{t('totalVisitors')}</div>
           </div>
           <span className="metric-tag tag-green">+12%</span>
         </div>
@@ -62,7 +64,7 @@ export const AdminDashboard = () => {
               <CheckCircle2 size={22} />
             </div>
             <div className="metric-val">1,142</div>
-            <div className="metric-label">Completed Services</div>
+            <div className="metric-label">{t('completedServices')}</div>
           </div>
           <span className="metric-tag tag-green">+8%</span>
         </div>
@@ -78,7 +80,7 @@ export const AdminDashboard = () => {
               <Clock size={22} />
             </div>
             <div className="metric-val">28 min</div>
-            <div className="metric-label">Avg Waiting Time</div>
+            <div className="metric-label">{t('avgWaitTime')}</div>
           </div>
           <span className="metric-tag tag-green-simple">↓ 4 min</span>
         </div>
@@ -94,7 +96,7 @@ export const AdminDashboard = () => {
               <AlertTriangle size={22} />
             </div>
             <div className="metric-val">3.8%</div>
-            <div className="metric-label">No-show Rate</div>
+            <div className="metric-label">{t('noShowRate')}</div>
           </div>
           <span className="metric-tag tag-green-simple">↓ 0.4%</span>
         </div>
@@ -105,8 +107,8 @@ export const AdminDashboard = () => {
         {/* Service Performance Today */}
         <div className="dashboard-card">
           <div className="card-title-bar">
-            <h2 className="card-title">Service Performance Today</h2>
-            <Activity size={18} color="#64748B" />
+            <h2 className="card-title">{t('servicePerformanceToday')}</h2>
+            <Activity size={18} color="var(--text-muted)" />
           </div>
 
           <div>
@@ -138,8 +140,8 @@ export const AdminDashboard = () => {
         {/* Live Queue Status */}
         <div className="dashboard-card">
           <div className="card-title-bar">
-            <h2 className="card-title">Live Queue Status</h2>
-            <span style={{ fontSize: '11px', color: '#64748B' }}>Click queue status to pause/resume</span>
+            <h2 className="card-title">{t('liveQueueStatus')}</h2>
+            <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Click queue status to pause/resume</span>
           </div>
 
           <div>
@@ -162,7 +164,7 @@ export const AdminDashboard = () => {
                     onClick={() => toggleQueueStatus(item.id)}
                     title="Click to toggle active/paused"
                   >
-                    {item.status}
+                    {item.status === 'active' ? t('active') : t('paused')}
                   </span>
                 </div>
               </div>
