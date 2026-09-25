@@ -1,0 +1,29 @@
+name: smartq_mobile
+description: SmartQ - AI-Powered Virtual Queue Management Mobile Application
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^2.4.5
+  dio: ^5.3.3
+  flutter_secure_storage: ^9.0.0
+  firebase_messaging: ^14.7.5
+  google_maps_flutter: ^2.5.0
+  intl: ^0.18.1
+  lucide_icons: ^0.292.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/

@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: ankane/pgvector:v0.5.1
+    container_name: smartq_postgres
+    environment:
+      POSTGRES_DB: smartq_db
+      POSTGRES_USER: smartq_admin
+      POSTGRES_PASSWORD: smartq_secret_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U smartq_admin -d smartq_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: smartq_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: smartq_backend
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://smartq_admin:smartq_secret_password@postgres:5432/smartq_db
+      - REDIS_URL=redis://redis:6379/0
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+
+  ai:
+    build:
+      context: ./ai
+      dockerfile: Dockerfile
+    container_name: smartq_ai
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://smartq_admin:smartq_secret_password@postgres:5432/smartq_db
+    ports:
+      - "8001:8001"
+    depends_on:
+      - backend
+
+  chatbot:
+    build:
+      context: ./chatbot
+      dockerfile: Dockerfile
+    container_name: smartq_chatbot
+    ports:
+      - "8002:8002"
+    depends_on:
+      - backend
+      - ai
+
+  web:
+    build:
+      context: ./web
+      dockerfile: ../infra/docker/Dockerfile.web
+    container_name: smartq_web
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+  redis_data:
