@@ -14,6 +14,7 @@ dependencies:
   flutter_secure_storage: ^9.0.0
   firebase_messaging: ^14.7.5
   google_maps_flutter: ^2.5.0
+  go_router: ^14.8.1
   intl: ^0.18.1
   lucide_icons: ^0.292.0
 
@@ -24,6 +25,3 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/images/
-    - assets/icons/
