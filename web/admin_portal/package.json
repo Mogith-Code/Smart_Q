@@ -1,29 +1,11 @@
 {
-  "name": "smartq-web",
-  "private": true,
+  "name": "smartq-web-portal",
   "version": "1.0.0",
-  "type": "module",
+  "private": true,
+  "description": "SmartQ Web Portal root wrapper",
   "scripts": {
-    "dev": "vite --open",
-    "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview --open"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.18.0",
-    "axios": "^1.6.0",
-    "lucide-react": "^0.292.0",
-    "zustand": "^4.4.6",
-    "recharts": "^2.9.3",
-    "socket.io-client": "^4.7.2"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.37",
-    "@types/react-dom": "^18.2.15",
-    "@vitejs/plugin-react": "^4.2.0",
-    "typescript": "^5.2.2",
-    "vite": "^5.0.0"
+    "dev": "npm --prefix admin_portal run dev",
+    "build": "npm --prefix admin_portal run build",
+    "preview": "npm --prefix admin_portal run preview"
   }
 }
