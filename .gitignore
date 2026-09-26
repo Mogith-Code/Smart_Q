@@ -45,6 +45,8 @@ mobile/build/
 mobile/.flutter-plugins
 mobile/.flutter-plugins-dependencies
 mobile/.packages
+!mobile/lib/
+!mobile/lib/**
 
 # IDE & Editors
 .vscode/
