@@ -11,19 +11,17 @@ import {
   Bell, 
   ChevronDown,
   Moon,
-  Sun,
-  Globe
+  Sun
 } from 'lucide-react';
 import { NotificationDropdown } from '../components/dropdowns/NotificationDropdown';
 import { UserProfileDropdown } from '../components/dropdowns/UserProfileDropdown';
-import { LanguageDropdown } from '../components/dropdowns/LanguageDropdown';
 import { ExitModal } from '../components/modals/ExitModal';
 import { useLanguage } from '../context/LanguageContext';
 
 export const AdminLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
 
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     return (localStorage.getItem('smartq_theme') as 'light' | 'dark') || 'light';
@@ -31,7 +29,6 @@ export const AdminLayout = () => {
 
   const [showNotifications, setShowNotifications] = useState(false);
   const [showUserDropdown, setShowUserDropdown] = useState(false);
-  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const [showExitModal, setShowExitModal] = useState(false);
 
   useEffect(() => {
@@ -59,15 +56,6 @@ export const AdminLayout = () => {
       case '/dashboard':
       default:
         return t('dashboard');
-    }
-  };
-
-  const getLangBadge = () => {
-    switch (language) {
-      case 'ta': return 'TA';
-      case 'si': return 'SI';
-      case 'en':
-      default: return 'EN';
     }
   };
 
@@ -176,28 +164,6 @@ export const AdminLayout = () => {
           </div>
 
           <div className="header-actions">
-            {/* Language Switcher Pill */}
-            <div style={{ position: 'relative' }}>
-              <button 
-                className="icon-button" 
-                title="Select Language (English, தமிழ், සිංහල)"
-                style={{ width: 'auto', padding: '0 12px', borderRadius: '20px', gap: '6px', fontSize: '12px', fontWeight: 700 }}
-                onClick={() => {
-                  setShowLanguageDropdown(!showLanguageDropdown);
-                  setShowNotifications(false);
-                  setShowUserDropdown(false);
-                }}
-              >
-                <Globe size={15} />
-                <span>{getLangBadge()}</span>
-              </button>
-
-              <LanguageDropdown 
-                isOpen={showLanguageDropdown} 
-                onClose={() => setShowLanguageDropdown(false)} 
-              />
-            </div>
-
             {/* Theme Toggle Button */}
             <button 
               className="icon-button" 
@@ -215,7 +181,6 @@ export const AdminLayout = () => {
                 onClick={() => {
                   setShowNotifications(!showNotifications);
                   setShowUserDropdown(false);
-                  setShowLanguageDropdown(false);
                 }}
               >
                 <Bell size={18} />
@@ -235,7 +200,6 @@ export const AdminLayout = () => {
                 onClick={() => {
                   setShowUserDropdown(!showUserDropdown);
                   setShowNotifications(false);
-                  setShowLanguageDropdown(false);
                 }}
               >
                 <div className="user-avatar">RR</div>
