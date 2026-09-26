@@ -16,9 +16,11 @@ export const Sidebar: React.FC = () => {
     <aside className="w-64 bg-[#0A1E34] text-white flex flex-col justify-between shrink-0 h-screen sticky top-0">
       <div>
         <div className="p-6 flex items-center gap-3 border-b border-slate-800">
-          <div className="w-9 h-9 rounded-lg bg-[#0D9488] flex items-center justify-center font-bold text-white shadow-md">
-            SQ
-          </div>
+          <img 
+            src="/logo.png" 
+            alt="SmartQ Logo" 
+            className="w-10 h-10 object-contain drop-shadow"
+          />
           <div>
             <h1 className="font-bold text-base leading-tight tracking-wide">SmartQ</h1>
             <p className="text-xs text-slate-400">Staff Portal</p>

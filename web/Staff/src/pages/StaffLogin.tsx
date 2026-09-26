@@ -1,112 +1,80 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Eye, EyeOff } from 'lucide-react';
+import { Lock, Mail, ArrowRight } from 'lucide-react';
 
 export const StaffLogin: React.FC = () => {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('perera.d@hospital.lk');
+  const [password, setPassword] = useState('••••••••');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    navigate('/dashboard');
+  };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col justify-between items-center p-6">
-      <div className="w-full max-w-6xl flex justify-between items-center py-4">
-        <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded bg-[#0D9488] text-white flex items-center justify-center font-bold text-xs">
-            SQ
-          </div>
-          <span className="font-bold text-[#0F172A] text-sm">SmartQ</span>
-          <span className="text-xs text-slate-400 ml-1">Staff Portal</span>
-        </div>
-        <span className="flex items-center gap-1.5 text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          System Online
-        </span>
-      </div>
-
-      <div className="w-full max-w-md bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden">
-        <div className="bg-[#0A1E34] p-8 text-center text-white">
-          <div className="w-12 h-12 rounded-xl bg-[#0D9488] flex items-center justify-center font-bold mx-auto mb-3 shadow">
-            SQ
-          </div>
-          <h2 className="text-xl font-bold">SmartQ Staff Portal</h2>
-          <p className="text-xs text-slate-300 mt-1">City General Hospital — OPD Staff Login</p>
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
+      <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 border border-slate-100">
+        <div className="text-center mb-8">
+          <img 
+            src="/logo.png" 
+            alt="SmartQ Logo" 
+            className="w-16 h-16 mx-auto mb-4 object-contain"
+          />
+          <h1 className="text-2xl font-bold text-slate-900">SmartQ Staff Portal</h1>
+          <p className="text-sm text-slate-500 mt-1">Sign in to manage patient queues & counters</p>
         </div>
 
-        <form
-          className="p-8 space-y-5"
-          onSubmit={(e) => {
-            e.preventDefault();
-            navigate('/dashboard');
-          }}
-        >
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">
-              Staff ID / Email
-            </label>
-            <input
-              type="text"
-              defaultValue="STF-2026-042"
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D9488]"
-              placeholder="e.g. STF-2026-042 or d.perera@hospital.gov.lk"
-            />
-          </div>
-
-          <div>
-            <label className="block text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">
-              Password
+            <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+              Work Email
             </label>
             <div className="relative">
+              <Mail className="absolute left-3.5 top-3 text-slate-400" size={18} />
               <input
-                type={showPassword ? 'text' : 'password'}
-                defaultValue="password123"
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D9488]"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D9488] focus:border-transparent transition-all"
+                placeholder="name@hospital.lk"
               />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3.5 top-3.5 text-slate-400 hover:text-slate-600"
-              >
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-              </button>
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">
-              Assign Counter
+            <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+              Password
             </label>
-            <select className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D9488] bg-white">
-              <option>OPD Counter 02 (General OPD)</option>
-              <option>OPD Counter 01 (General OPD)</option>
-              <option>OPD Counter 05 (Cardiology OPD)</option>
-            </select>
-          </div>
-
-          <div className="flex items-center justify-between text-xs pt-1">
-            <label className="flex items-center gap-2 text-slate-600 cursor-pointer">
-              <input type="checkbox" defaultChecked className="rounded border-slate-300 text-[#0D9488]" />
-              Remember this device
-            </label>
-            <a href="#" className="text-[#0D9488] font-semibold hover:underline">
-              Forgot Password?
-            </a>
+            <div className="relative">
+              <Lock className="absolute left-3.5 top-3 text-slate-400" size={18} />
+              <input
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D9488] focus:border-transparent transition-all"
+                placeholder="••••••••"
+              />
+            </div>
           </div>
 
           <button
             type="submit"
-            className="w-full py-3.5 bg-[#0A2540] text-white rounded-xl text-sm font-bold shadow-md hover:bg-slate-800 transition"
+            className="w-full mt-2 bg-[#0D9488] hover:bg-[#0b7c72] text-white font-medium py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm transition-colors cursor-pointer"
           >
-            Sign In to Counter
+            <span>Log In to Dashboard</span>
+            <ArrowRight size={16} />
           </button>
-
-          <p className="text-center text-[11px] text-slate-400 pt-2">
-            Authorized hospital medical personnel only
-          </p>
         </form>
-      </div>
 
-      <div className="text-[11px] text-slate-400 py-3">
-        SmartQ · AI-Powered Virtual Queue Management · City General Hospital
+        <p className="text-center text-xs text-slate-400 mt-6">
+          Hospital Queue Management System • SmartQ
+        </p>
       </div>
     </div>
   );
 };
+
+export default StaffLogin;
