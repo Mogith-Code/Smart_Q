@@ -6,6 +6,8 @@ import 'screens/home_screen.dart';
 import 'screens/institution_screen.dart';
 import 'screens/join_queue_screen.dart';
 import 'screens/onboarding_screen.dart';
+import 'screens/history_screen.dart';
+import 'screens/profile_screen.dart';
 import 'screens/queue_screen.dart';
 import 'screens/splash_screen.dart';
 import 'screens/token_screen.dart';
@@ -45,6 +47,8 @@ final _router = GoRouter(
           JoinQueueScreen(serviceId: state.pathParameters['id']!),
     ),
     GoRoute(path: '/token', builder: (context, state) => const TokenScreen()),
+    GoRoute(path: '/history', builder: (context, state) => const HistoryScreen()),
+    GoRoute(path: '/profile', builder: (context, state) => const ProfileScreen()),
   ],
 );
 

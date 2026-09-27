@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg-blue { fill: #050099; }
+      .cyan-stroke { stroke: #00BDD6; stroke-width: 32; fill: none; stroke-linecap: round; }
+      .blue-stroke { stroke: #050099; stroke-width: 38; fill: none; stroke-linecap: round; }
+      .cyan-fill { fill: #00BDD6; }
+      .blue-fill { fill: #050099; }
+      .white-fill { fill: #FFFFFF; }
+    </style>
+  </defs>
+
+  <!-- Outer Dark Blue Ring with Cutouts -->
+  <circle cx="230" cy="230" r="160" fill="none" stroke="#050099" stroke-width="48" />
+
+  <!-- White Dot Nodes on Outer Ring -->
+  <circle cx="230" cy="70" r="24" class="white-fill" />
+  <circle cx="116" cy="116" r="24" class="white-fill" />
+  <circle cx="70" cy="230" r="24" class="white-fill" />
+  <circle cx="116" cy="344" r="24" class="white-fill" />
+  <circle cx="230" cy="390" r="24" class="white-fill" />
+
+  <!-- Dark Blue Outer Nodes -->
+  <circle cx="230" cy="70" r="22" class="blue-fill" />
+  <circle cx="116" cy="116" r="22" class="blue-fill" />
+  <circle cx="70" cy="230" r="22" class="blue-fill" />
+  <circle cx="116" cy="344" r="22" class="blue-fill" />
+  <circle cx="230" cy="390" r="22" class="blue-fill" />
+
+  <!-- Inner Cyan Q Arc -->
+  <path d="M 330 180 A 110 110 0 1 0 230 340" class="cyan-stroke" />
+
+  <!-- Cyan Node & Signal Waves -->
+  <circle cx="330" cy="130" r="24" class="cyan-fill" />
+  <path d="M 345 85 A 45 45 0 0 1 395 135" stroke="#00BDD6" stroke-width="14" fill="none" stroke-linecap="round" />
+  <path d="M 365 65 A 70 70 0 0 1 425 125" stroke="#00BDD6" stroke-width="14" fill="none" stroke-linecap="round" />
+
+  <!-- Diagonal Q Tail Arm -->
+  <line x1="210" y1="210" x2="410" y2="410" class="blue-stroke" />
+  <circle cx="410" cy="410" r="32" fill="none" stroke="#050099" stroke-width="20" />
+</svg>

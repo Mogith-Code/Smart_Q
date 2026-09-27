@@ -19,7 +19,7 @@ export const Sidebar: React.FC = () => {
           <img 
             src="/logo.png" 
             alt="SmartQ Logo" 
-            className="w-10 h-10 object-contain drop-shadow"
+            className="w-10 h-10 object-contain drop-shadow-sm" 
           />
           <div>
             <h1 className="font-bold text-base leading-tight tracking-wide">SmartQ</h1>

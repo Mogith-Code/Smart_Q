@@ -22,10 +22,17 @@ class SmartQBrand extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(11),
           ),
-          child: const Icon(
-            Icons.qr_code_2_rounded,
-            color: AppColors.primary,
-            size: 29,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(11),
+            child: Image.asset(
+              'assets/images/logo.png',
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => const Icon(
+                Icons.qr_code_2_rounded,
+                color: AppColors.primary,
+                size: 29,
+              ),
+            ),
           ),
         ),
         const SizedBox(width: 9),
@@ -288,11 +295,8 @@ class SmartQBottomNav extends StatelessWidget {
       onDestinationSelected: (index) {
         if (index == 0) context.go('/home');
         if (index == 1) context.go('/token');
-        if (index > 1) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('${items[index].$2} is coming soon.')),
-          );
-        }
+        if (index == 2) context.go('/history');
+        if (index == 3) context.go('/profile');
       },
       destinations: [
         for (final item in items)
