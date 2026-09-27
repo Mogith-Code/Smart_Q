@@ -10,9 +10,7 @@ export const StaffLogin: React.FC = () => {
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col justify-between items-center p-6">
       <div className="w-full max-w-6xl flex justify-between items-center py-4">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded bg-[#0D9488] text-white flex items-center justify-center font-bold text-xs">
-            SQ
-          </div>
+          <img src="/logo.png" alt="SmartQ Logo" className="w-8 h-8 object-contain" />
           <span className="font-bold text-[#0F172A] text-sm">SmartQ</span>
           <span className="text-xs text-slate-400 ml-1">Staff Portal</span>
         </div>
@@ -24,9 +22,7 @@ export const StaffLogin: React.FC = () => {
 
       <div className="w-full max-w-md bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden">
         <div className="bg-[#0A1E34] p-8 text-center text-white">
-          <div className="w-12 h-12 rounded-xl bg-[#0D9488] flex items-center justify-center font-bold mx-auto mb-3 shadow">
-            SQ
-          </div>
+          <img src="/logo.png" alt="SmartQ Logo" className="w-14 h-14 object-contain mx-auto mb-3 drop-shadow" />
           <h2 className="text-xl font-bold">SmartQ Staff Portal</h2>
           <p className="text-xs text-slate-300 mt-1">City General Hospital — OPD Staff Login</p>
         </div>
